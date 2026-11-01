@@ -797,6 +797,7 @@ html.light .di.on{color:var(--limeTx);background:rgba(20,199,160,.16)}
 </div>
 
 <nav class="dock" id="dock" aria-label="Acciones">
+  <button class="di" id="nHome" title="Inicio" aria-label="Inicio"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg></button>
   <button class="di" id="nBuscar" title="Buscar archivo" aria-label="Buscar archivo"><svg viewBox="0 0 24 24"><path d="M12 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4"/><path d="M12 3v5h5"/><path d="M12 3l5 5v2"/><circle cx="16" cy="16" r="3.2"/><path d="M18.4 18.4L21 21"/></svg></button>
   <button class="di" id="nExt" title="Extractos bancarios" aria-label="Extractos bancarios"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9.5 18v-6M9.5 12l-2 2M9.5 12l2 2"/><path d="M14.5 12v6M14.5 18l-2-2M14.5 18l2-2"/></svg></button>
   <button class="di" id="nSync" title="Sincronizar correo (mantén presionado para configurar)" aria-label="Sincronizar correo"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M20 4v4.5h-4.5"/></svg></button>
@@ -1906,6 +1907,13 @@ document.addEventListener('visibilitychange', () => { if(document.visibilityStat
 window.addEventListener('pagehide', () => { persistir(); });
 
 /* ---------- v4.1: barra flotante ---------- */
+document.getElementById("nHome").onclick = () => {
+  if(UI.pant || S.tab==='resumen'){
+    UI.pant = null;
+    if(S.tab==='resumen') S.tab = (S.meses.find(m => m.activo) || S.meses[S.meses.length-1]).periodo;
+    render();
+  } else window.scrollTo({top:0, behavior:'smooth'});
+};
 function pintaDock(){ const b = $('#nExt'); if(b) b.classList.toggle('on', UI.pant==='extractos'); }
 function abrirCorreoCfg(){ const c = cfgCorreo(); $('#cUrl').value = c.url||''; $('#cClave').value = c.clave||''; $('#cAuto').checked = !!c.auto; $('#correoCfg').classList.add('on'); }
 $('#cCerrar').onclick = () => $('#correoCfg').classList.remove('on');
