@@ -666,6 +666,49 @@ html.light .di.on{color:var(--limeTx);background:rgba(20,199,160,.16)}
   #xView table.kt td:nth-child(n+3) input,#xView table.kt td:nth-child(n+3) select{min-width:0!important;width:100%}
 }
 @media print{.dock{display:none!important}}
+/* ===== comprobantes móviles: campos apilados, sin scroll horizontal ===== */
+@media screen and (max-width:820px){
+  #kList{min-width:0;width:100%;}
+  #kList .kcard{min-width:0;max-width:100%;overflow:hidden;padding:12px;border-radius:18px;}
+  #kList .kh{min-width:0;gap:8px;}
+  #kList .kh b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  #kList table.ct.kt{display:block;width:100%;min-width:0!important;max-width:100%;table-layout:fixed;overflow:visible;}
+  #kList table.ct.kt thead{display:none;}
+  #kList table.ct.kt tbody{display:grid;gap:8px;width:100%;}
+  #kList table.ct.kt tbody tr{display:grid;grid-template-columns:minmax(0,1fr) 38px;gap:6px 8px;width:100%;min-width:0;padding:10px;border:1px solid var(--gline);border-radius:14px;background:var(--glass);}
+  #kList table.ct.kt tbody td{display:grid;grid-template-columns:1fr;gap:3px;min-width:0;padding:0;border:0;}
+  #kList table.ct.kt tbody td::before{display:block;color:var(--mute);font-size:10px;letter-spacing:.1em;text-transform:uppercase;line-height:1.2;}
+  #kList table.ct.kt tbody td:nth-child(1){grid-column:2;grid-row:1;align-content:end;justify-items:center;}
+  #kList table.ct.kt tbody td:nth-child(1)::before{content:'Incluir';}
+  #kList table.ct.kt tbody td:nth-child(2){grid-column:1;grid-row:1;}
+  #kList table.ct.kt tbody td:nth-child(2)::before{content:'Valor';}
+  #kList table.ct.kt tbody td:nth-child(3){grid-column:1;grid-row:2;}
+  #kList table.ct.kt tbody td:nth-child(3)::before{content:'Concepto';}
+  #kList table.ct.kt tbody td:nth-child(4){grid-column:1/-1;grid-row:3;}
+  #kList table.ct.kt tbody td:nth-child(4)::before{content:'Destino';}
+  #kList table.ct.kt tbody td:nth-child(5){grid-column:1/-1;grid-row:4;}
+  #kList table.ct.kt tbody td:nth-child(5)::before{content:'Mes del presupuesto';}
+  #kList table.ct.kt tbody td:nth-child(6){grid-column:2;grid-row:2;align-content:end;justify-items:end;}
+  #kList table.ct.kt input:not([type="checkbox" ]),#kList table.ct.kt select{display:block;width:100%;min-width:0!important;max-width:100%;min-height:38px;padding:7px 9px;border:1px solid var(--gline);border-radius:10px;background:rgba(0,0,0,.2);color:var(--ink);font-size:14px;}
+  html.light #kList table.ct.kt input:not([type="checkbox" ]),html.light #kList table.ct.kt select{background:rgba(255,255,255,.8);}
+  #kList table.ct.kt input[type="checkbox"]{width:20px;height:20px;margin:0;}
+  #kList .compf{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;align-items:stretch;}
+  #kList .compf>span{display:grid;grid-template-columns:minmax(0,1fr);gap:5px;min-width:0;}
+  #kList .compf input[type="date"]{width:100%!important;min-width:0;min-height:38px;padding:6px 9px;border:1px solid var(--gline);border-radius:10px;background:var(--glass);color:var(--ink);font:inherit;}
+  #kList .compf>span:last-child{display:flex;flex-wrap:wrap;gap:7px;}
+  #kList .compf>span:last-child .chip{flex:1 1 130px;min-width:0;margin:0;white-space:normal;line-height:1.25;}
+  #kList details,#kList .hint,#kList .kst{max-width:100%;overflow-wrap:anywhere;}
+  #kList details pre{max-width:100%;max-height:120px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;}
+}
+.ia-dlg{max-width:560px;max-height:calc(100dvh - 32px);overflow:auto;background:var(--paper);border:1px solid var(--gline);border-radius:24px;color:var(--ink);}
+.ia-dlg p{font-size:19px;}
+.ia-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0;}
+.ia-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 10px;align-items:center;padding:12px;border:1px solid var(--gline);border-radius:16px;background:var(--glass);}
+.ia-card>label{grid-column:1/-1;color:var(--limeTx);font-size:13px;letter-spacing:.08em;text-transform:uppercase;}
+.ia-card input{min-width:0;width:100%;height:42px;padding:0 11px;border:1px solid var(--gline);border-radius:12px;background:rgba(0,0,0,.22);color:var(--ink);font:inherit;font-size:14px;}
+.ia-card .btn{min-height:42px;margin:0;white-space:nowrap;}
+html.light .ia-card input{background:rgba(255,255,255,.8);}
+@media(max-width:480px){.ia-dlg{padding:16px;width:calc(100% - 24px);}.ia-card{grid-template-columns:minmax(0,1fr);}.ia-card>label{grid-column:auto;}.ia-card .btn{width:100%;}}
 </style>
 </head>
 <body>
@@ -681,7 +724,7 @@ html.light .di.on{color:var(--limeTx);background:rgba(20,199,160,.16)}
     <div class="menu" id="menu">
       <button class="gbtn" id="bMenu" title="Menú"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       <div class="menu-list" id="menuList">
-        <button class="mi" id="bLogin"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span id="lgTxt">Iniciar sesión</span></button>
+        <button class="mi" id="bLogin"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span id="lgTxt">Asistentes IA</span></button>
         <button class="mi" id="bSave" title="Guardar (Ctrl+S)"><svg viewBox="0 0 24 24"><path d="M5 3h11l4 4v14H5z"/><path d="M8 3v6h8V3M8 21v-7h8v7"/></svg>Guardar</button>
         <button class="mi" id="bXls" title="Una hoja por mes + hoja Resumen"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 10h18M9 4v16"/></svg>Exportar a Excel</button>
         <button class="mi" id="bImp"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Abrir archivo (.json)</button>
@@ -804,7 +847,11 @@ html.light .di.on{color:var(--limeTx);background:rgba(20,199,160,.16)}
   <button class="di" id="nSync" title="Sincronizar correo (mantén presionado para configurar)" aria-label="Sincronizar correo"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M20 4v4.5h-4.5"/></svg></button>
 </nav>
 <div class="mask" id="correoCfg"><div class="dlg"><p>Correo (Gmail)</p><small>Pega la dirección del script de Google (termina en /exec) y la clave. Se guarda solo en este dispositivo.</small><input id="cUrl" type="url" placeholder="URL del script (termina en /exec)" autocomplete="off"><input id="cClave" type="password" placeholder="Clave del script" autocomplete="off"><label class="cauto"><input id="cAuto" type="checkbox"> Sincronizar al abrir la app</label><div class="bt"><button class="btn" id="cCerrar">Cerrar</button><button class="btn dark" id="cGuardar">Guardar</button></div></div></div>
-<div class="mask" id="mLink"><div class="dlg"><p>Iniciar sesión en Claude</p><small>Se abrirá tu sesión de Claude. Pega aquí el enlace de tu presupuesto en Claude (o deja claude.ai).</small><input id="lkUrl" type="url" placeholder="https://claude.ai/…" autocomplete="off"><div class="bt"><button class="btn" id="lkNo">Cancelar</button><button class="btn dark" id="lkSi">Abrir Claude</button></div></div></div>
+<div class="mask" id="mLink"><div class="dlg ia-dlg"><p>Abrir asistente</p><small>Guarda el enlace o conversación que quieras abrir. Gmail se sincroniza por separado desde el botón de correo; los asistentes no reciben tus mensajes automáticamente.</small><div class="ia-grid" id="iaGrid">
+  <div class="ia-card"><label for="lkUrl">Claude</label><input id="lkUrl" type="url" inputmode="url" placeholder="https://claude.ai/" autocomplete="url"><button type="button" class="btn dark" data-ai-open="claude">Abrir Claude</button></div>
+  <div class="ia-card"><label for="gptUrl">ChatGPT</label><input id="gptUrl" type="url" inputmode="url" placeholder="https://chatgpt.com/" autocomplete="url"><button type="button" class="btn dark" data-ai-open="chatgpt">Abrir ChatGPT</button></div>
+  <div class="ia-card"><label for="gemUrl">Gemini</label><input id="gemUrl" type="url" inputmode="url" placeholder="https://gemini.google.com/app" autocomplete="url"><button type="button" class="btn dark" data-ai-open="gemini">Abrir Gemini</button></div>
+</div><div class="bt"><button class="btn" id="iaLogout" hidden>Cerrar sesión de Claude</button><button class="btn" id="lkNo">Cerrar</button></div></div></div>
 <div class="mask" id="mTxt"><div class="dlg" style="max-width:520px"><p>Copia de seguridad en texto</p><small>Copia todo y pégalo en una nota o en un archivo .json. Para restaurar: pega aquí y toca «Cargar».</small><textarea id="txtJson" spellcheck="false"></textarea><div class="bt"><button class="btn" id="txtCerrar">Cerrar</button><button class="btn" id="txtCargar">Cargar</button><button class="btn dark" id="txtCopiar">Copiar</button></div></div></div>
 <div class="mask" id="mask"><div class="dlg"><p id="mP"></p><small id="mS"></small><input id="mIn" hidden><div class="bt"><button class="btn" id="mNo">Cancelar</button><button class="btn dark" id="mYes">Aceptar</button></div></div></div>
 
@@ -1867,23 +1914,29 @@ async function entrar(silencioso){
     $('#lgTxt').textContent = 'Sesión' + (NUBE.nombre ? ': ' + NUBE.nombre.split(' ')[0] : ' iniciada');
   }catch(e){ NUBE.ref = null; nubeEst(''); if(!silencioso) await alerta('No pude abrir tu cuenta', 'Revisa tu conexión e inténtalo otra vez.'); }
 }
-const LINK_K = 'kash_claude_url';
-const LINK_OK = /^https:\/\/([a-z0-9-]+\.)?claude\.ai(\/[^\s]*)?$/i;
-$('#bLogin').onclick = async () => {
-  if(NUBE.ref){ if(await confirmar('¿Cerrar sesión?', 'Dejará de sincronizar con tu cuenta en este dispositivo.')){ NUBE.ref = null; nubeEst(''); $('#lgTxt').textContent = 'Iniciar sesión'; } return; }
-  if(window.claude){ entrar(false); return; }
-  let u = ''; try{ u = localStorage.getItem(LINK_K) || ''; }catch(e){}
-  $('#lkUrl').value = u || 'https://claude.ai/'; $('#mLink').classList.add('on');
+const LINK_K = 'kash_claude_url', IA_KEY = 'kash_ai_urls';
+const IA_HOME = {claude:'https://claude.ai/', chatgpt:'https://chatgpt.com/', gemini:'https://gemini.google.com/app'};
+function cfgIA(){
+  try{ const saved=JSON.parse(localStorage.getItem(IA_KEY)||'{}'); return {...IA_HOME,...saved,claude:saved.claude||localStorage.getItem(LINK_K)||IA_HOME.claude}; }
+  catch(e){ return {...IA_HOME,claude:localStorage.getItem(LINK_K)||IA_HOME.claude}; }
+}
+function abrirIA(){ const c=cfgIA(); $('#lkUrl').value=c.claude; $('#gptUrl').value=c.chatgpt; $('#gemUrl').value=c.gemini; $('#iaLogout').hidden=!NUBE.ref; $('#mLink').classList.add('on'); }
+$('#bLogin').onclick = () => abrirIA();
+$('#iaLogout').onclick = async () => {
+  if(NUBE.ref && await confirmar('¿Cerrar sesión?', 'Dejará de sincronizar con tu cuenta en este dispositivo.')){ NUBE.ref=null; nubeEst(''); $('#lgTxt').textContent='Asistentes IA'; abrirIA(); }
 };
 $('#lkNo').onclick = () => $('#mLink').classList.remove('on');
-$('#lkSi').onclick = () => {
-  const u = $('#lkUrl').value.trim();
-  if(!LINK_OK.test(u)){ $('#lkUrl').style.borderColor = 'var(--amber)'; return; }
-  try{ localStorage.setItem(LINK_K, u); }catch(e){}
-  $('#mLink').classList.remove('on');
-  const w = window.open(u, '_blank'); if(!w) window.location.href = u;
-};
-
+$('#iaGrid').addEventListener('click', async e => {
+  const b=e.target.closest('[data-ai-open]'); if(!b) return;
+  const key=b.dataset.aiOpen, ids={claude:'lkUrl',chatgpt:'gptUrl',gemini:'gemUrl'}, allowed={claude:['claude.ai'],chatgpt:['chatgpt.com','chat.openai.com'],gemini:['gemini.google.com']};
+  const input=$('#'+ids[key]), raw=input.value.trim()||IA_HOME[key]; let u;
+  try{ u=new URL(raw); }catch(e){ input.focus(); input.style.borderColor='var(--amber)'; return; }
+  const hostOk=allowed[key].some(host => u.hostname===host || (key==='claude' && u.hostname.endsWith('.'+host)));
+  if(u.protocol!=='https:' || !hostOk){ input.focus(); input.style.borderColor='var(--amber)'; return; }
+  const c={claude:$('#lkUrl').value.trim()||IA_HOME.claude,chatgpt:$('#gptUrl').value.trim()||IA_HOME.chatgpt,gemini:$('#gemUrl').value.trim()||IA_HOME.gemini};
+  try{ localStorage.setItem(IA_KEY,JSON.stringify(c)); localStorage.setItem(LINK_K,c.claude); }catch(e){}
+  $('#mLink').classList.remove('on'); if(key==='claude' && window.claude){ await entrar(false); return; } const w=window.open(u.href,'_blank'); if(!w) window.location.href=u.href;
+});
 /* ---------- v4.0: copia en texto, notificaciones, saludo ---------- */
 $('#saved').addEventListener('click', e => { const a = e.target.closest('[data-a="copia"]'); if(a){ e.preventDefault(); abrirTxt(); } });
 $('#txtCerrar').onclick = () => $('#mTxt').classList.remove('on');
