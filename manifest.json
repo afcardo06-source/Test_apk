@@ -1,20 +1,21 @@
 {
-  "background_color": "#535353",
+  "background_color": "#04100C",
+  "theme_color": "#04100C",
   "dir": "ltr",
-  "display": "standalone",
-  "name": "KASH",
-  "orientation": "any",
-  "scope": "/",
-  "short_name": "KASH",
-  "start_url": "https://afcardo06-source.github.io/Test_apk/",
-  "theme_color": "#7ccd11",
   "lang": "es",
+  "name": "Kash · Presupuesto Personal",
+  "short_name": "Kash",
+  "description": "Aplicación personal de presupuesto, control de gastos e ingresos con lectura de extractos y comprobantes.",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/Test_apk/",
+  "start_url": "https://afcardo06-source.github.io/Test_apk/",
   "icons": [
-  {
-    "src": "launchericon-512x512.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }
-]
+    {
+      "src": "launchericon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }
-
